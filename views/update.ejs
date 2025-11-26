@@ -14,14 +14,14 @@
 
         <div class="container">
             <h1>Update Task</h1>
-            <form class="todo-form" action="/update" method="post">
-                <input type="text" placeholder="Enter Task Title" class="input">
+            <form class="todo-form" action="/update/<%=todo._id%>" method="post">
+                <input type="text" placeholder="Enter Task Title" class="input" name="title" value="<%=todo.title%>">
                 <br>
                 <br>
-                <textarea class="input" name="description" id="description"></textarea>
+                <textarea class="input" name="description" id="description"><%=todo.description%></textarea>
                 <br>
                 <br>
-                <button class="btn">Add New Task</button>
+                <button class="btn">Update Task</button>
             </form>
         </div>
 </body>

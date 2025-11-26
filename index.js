@@ -30,12 +30,22 @@ app.get("/add", (req, resp) => {
 	resp.render("add");
 });
 
-app.get("/update", (req, resp) => {
-	resp.render("update");
+app.get("/update/:id", async (req, resp) => {
+	const db = await connection();
+	const collection = db.collection(dbCollection);
+	const result = await collection.findOne({ _id: new ObjectId(req.params.id) });
+	console.log(result);
+	resp.render("update", { todo: result });
 });
 
-app.post("/update", (req, resp) => {
-	resp.redirect("/");
+app.post("/update/:id", async (req, resp) => {
+	const db = await connection();
+	const collection = db.collection(dbCollection);
+	const filter = { _id: new ObjectId(req.params.id) };
+	const result = await collection.updateOne(filter, { $set: req.body });
+	if (result) {
+		resp.redirect("/");
+	}
 });
 
 app.post("/add", async (req, resp) => {
