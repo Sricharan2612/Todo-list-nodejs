@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task list</title>
+    <link rel="stylesheet" href="/public/styles.css">
+</head>
+
+<body>
+    <%- include("navbar")%>
+        <hr>
+
+        <div class="container">
+            <h1>Task List</h1>
+            <ul class="task-list">
+                <% for(let i=0;i<todoData.length;i++) {%>
+                    <li class="task-item">
+                        <div class="task-title">
+                            <%= todoData[i].title%>
+                        </div>
+                        <div class="task-description">
+                            <%= todoData[i].description%>
+                        </div>
+                    </li>
+                    <%}%>
+            </ul>
+        </div>
+</body>
+
+</html>

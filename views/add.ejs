@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="/public/styles.css">
+</head>
+
+<body>
+    <%- include("navbar")%>
+        <hr>
+        <div class="container">
+            <h1>Add Task</h1>
+            <form class="todo-form" action="/add" method="post">
+                <input type="text" placeholder="Enter Task Title" name="title" class="input">
+                <br>
+                <br>
+                <textarea class="input" name="description" id="description"></textarea>
+                <br>
+                <br>
+                <button class="btn">Add New Task</button>
+            </form>
+        </div>
+</body>
+
+</html>
