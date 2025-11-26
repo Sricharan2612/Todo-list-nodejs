@@ -23,6 +23,7 @@
                         <div class="task-description">
                             <%= todoData[i].description%>
                         </div>
+                        <a href="/delete/<%=todoData[i]._id%>" class="delete-item">Delete</a>
                     </li>
                     <%}%>
             </ul>
