@@ -45,6 +45,8 @@ app.post("/update/:id", async (req, resp) => {
 	const result = await collection.updateOne(filter, { $set: req.body });
 	if (result) {
 		resp.redirect("/");
+	} else {
+		resp.send("error");
 	}
 });
 
@@ -67,7 +69,7 @@ app.get("/delete/:id", async (req, resp) => {
 	if (result) {
 		resp.redirect("/");
 	} else {
-		resp.redirect("/error");
+		resp.send("error");
 	}
 });
 
