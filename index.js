@@ -61,10 +61,29 @@ app.post("/add", async (req, resp) => {
 		resp.redirect("/add");
 	}
 });
+
 app.get("/delete/:id", async (req, resp) => {
 	const db = await connection();
 	const collection = db.collection(dbCollection);
-	const result = collection.deleteOne({ _id: new ObjectId(req.params.id) });
+	const result = await collection.deleteOne({
+		_id: new ObjectId(req.params.id),
+	});
+
+	if (result) {
+		resp.redirect("/");
+	} else {
+		resp.send("error");
+	}
+});
+
+app.post("/multi-delete", async (req, resp) => {
+	const db = await connection();
+	const collection = db.collection(dbCollection);
+	const selectedTasks = Array.isArray(req.body.selectedTask)
+		? req.body.selectedTask.map((id) => new ObjectId(id))
+		: [new ObjectId(req.body.selectedTask)];
+	const result = await collection.deleteMany({ _id: { $in: selectedTasks } });
+	// console.log(selectedTasks);
 
 	if (result) {
 		resp.redirect("/");
