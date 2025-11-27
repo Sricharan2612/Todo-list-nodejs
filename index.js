@@ -82,6 +82,7 @@ app.post("/multi-delete", async (req, resp) => {
 	const selectedTasks = Array.isArray(req.body.selectedTask)
 		? req.body.selectedTask.map((id) => new ObjectId(id))
 		: [new ObjectId(req.body.selectedTask)];
+	
 	const result = await collection.deleteMany({ _id: { $in: selectedTasks } });
 	// console.log(selectedTasks);
 

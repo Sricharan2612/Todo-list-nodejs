@@ -15,18 +15,24 @@
         <div class="container">
             <h1>Task List</h1>
             <form action="/multi-delete" method="post">
-                <button class="delete-item" style="margin-bottom: 10px;">Delete Selected
-                    Task</button>
+                <div style="display: flex; justify-content: end;">
+                    <button class="delete-item" style="margin-bottom: 15px;">Delete Selected
+                        Task</button>
+                </div>
                 <ul class="task-list">
                     <% for(let i=0;i<todoData.length;i++) {%>
                         <li class="task-item">
-                            <div class="task-title">
-                                <%= todoData[i].title%>
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div class="task-title">
+                                    <%= todoData[i].title%>
+                                </div>
+                                <input type="checkbox" name="selectedTask" id="selectedTask"
+                                    value="<%=todoData[i]._id%>" />
                             </div>
                             <div class="task-description">
                                 <%= todoData[i].description%>
                             </div>
-                            <input type="checkbox" name="selectedTask" id="selectedTask" value="<%=todoData[i]._id%>" />
+
                             <a href="/delete/<%=todoData[i]._id%>" class="delete-item">Delete</a>
                             <a href="/update/<%=todoData[i]._id%>" class="update-item">Update</a>
                         </li>
